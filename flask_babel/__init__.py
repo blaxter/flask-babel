@@ -25,7 +25,7 @@ else:
     timezone = pytz.timezone
     UTC = pytz.UTC
 
-from flask_babel._compat import string_types
+from flask_babel._compat import text_type, string_types
 from flask_babel.speaklater import LazyString
 
 
@@ -552,7 +552,7 @@ def gettext(string, **variables):
     t = get_translations()
     if t is None:
         return string if not variables else string % variables
-    s = t.ugettext(string)
+    s = t.ugettext(text_type(string))
     return s if not variables else s % variables
 _ = gettext
 

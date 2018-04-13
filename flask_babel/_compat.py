@@ -13,8 +13,13 @@ PY2 = sys.version_info[0] == 2
 
 
 if PY2:
-    text_type = unicode
+    def text_type(v):
+        try:
+            return unicode(v)
+        except Exception:
+            return unicode(v, "utf-8", errors="ignore")
     string_types = (str, unicode)
+
 else:
     text_type = str
     string_types = (str, )
